@@ -3,22 +3,15 @@
 Android Project with variety of classes that shows how to implements and deal with background tasks in Android. 
 
 ## Topics
-- [ ] **Android Framework.**
-  - [ ] Arabic Article Link.
-  - [ ] Classes.
-  - [ ] Images.
-- [ ] **Android Linux Process.**
-  - [ ] Arabic Article Link.
-  - [ ] Classes.
-  - [ ] Images.
+- [x] Intro.
+
+### Process
+- [ ] Android Framework.
+- [ ] Android Linux Process.
+
+### Thread
 - [ ] Threads Intro.
-  - [ ] Arabic Article Link.
-  - [ ] Classes.
-  - [ ] Images.
 - [ ] Threads Contents.
-  - [ ] Arabic Article Link.
-  - [ ] Classes.
-  - [ ] Images.
 
 ### Thread Patterns (Concurrency)
 - [ ] Thread, Looper, Handler Pattern.
