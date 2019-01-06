@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHandlerThreadsActivity(View view) {
-
+        // Pattern HandlerThreads
+        Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+        startActivity(intent);
     }
 
     @Override
