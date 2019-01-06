@@ -37,21 +37,17 @@ public class Main2Activity extends AppCompatActivity implements Handler.Callback
     private MyFirstThread mMyFirstThread;
     private Handler mMainThreadHandler = null;
 
-    // Tasks
-    public static int MULTIPLICATION_TASK = 101;
-    public static int ADDITION_TASK = 102;
-    public static String RESULT_KEY = "result_key";
+
 
     @Override
     public boolean handleMessage(Message msg) {
-        if (msg.what == MULTIPLICATION_TASK) {
-            Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
-            int result = msg.getData().getInt(RESULT_KEY, -1);
-            Log.d(TAG, "handleMessage: Result for multiplication task is: " + result);
+        if (msg.what == Constant.MULTIPLICATION_TASK) {
+            int result = msg.getData().getInt(Constant.RESULT_KEY, -1);
+            Log.d(TAG, "handleMessage: Result... " + result + " from thread: " + Thread.currentThread().getName());
         }
 
-        if (msg.what == ADDITION_TASK) {
-            Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
+        if (msg.what == Constant.ADDITION_TASK) {
+            Log.d(TAG, "handleMessage: Result... " + Thread.currentThread().getName());
         }
         return false;
     }
@@ -68,8 +64,26 @@ public class Main2Activity extends AppCompatActivity implements Handler.Callback
             @Override
             public void onClick(View view) {
                 // Create a message and send it to the background custom thread
-                Message message = Message.obtain(null, MULTIPLICATION_TASK);
+                Message message = Message.obtain(null, Constant.MULTIPLICATION_TASK);
                 mMyFirstThread.sendMessageToFirstThread(message);
+
+                // Just for Fun!
+                // Create runnable and send it to the background custom thread
+                // Runnable can not return result back by it self
+                // So result gonna be in the custom thread
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Task
+                        int x = 10;
+                        int y = 90;
+                        Log.d(TAG, "run: a Runnable Calculating... 90 - 10 from thread: " + Thread.currentThread().getName());
+
+                        int result = y - x;
+                        Log.d(TAG, "run: Result ... 90 - 10 " + result + " from thread: " + Thread.currentThread().getName());
+                    }
+                };
+                mMyFirstThread.sendRunnableToFirstThread(runnable);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

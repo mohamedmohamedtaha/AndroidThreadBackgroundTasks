@@ -6,7 +6,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.mzdhr.androidthreadbackgroundtasks.Main2Activity;
+import com.mzdhr.androidthreadbackgroundtasks.Constant;
 
 /**
  * Created by MohammadL on 06/1/2019
@@ -77,6 +77,30 @@ public class MyFirstThread extends Thread {
     }
 
     /**
+     * Just for Fun!
+     * Public method to be called from Main2Activity to post our runnable to this custom thread.
+     *
+     * @param runnable
+     */
+    public void sendRunnableToFirstThread(Runnable runnable) {
+        // Sometime threads has delay to start immediately,
+        // therefore we should try to catch that null error.
+        while (true) {
+            try {
+                mCustomHandler.post(runnable);
+                break;
+            } catch (NullPointerException e) {
+                Log.d(TAG, "sendMessageToFirstThread: " + e.getMessage());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
      * Public method to be called from Main2Activity to stop this message and clear it,
      * so no memory leaks.
      */
@@ -101,22 +125,22 @@ public class MyFirstThread extends Thread {
          */
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == Main2Activity.MULTIPLICATION_TASK) {
-                Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
+            if (msg.what == Constant.MULTIPLICATION_TASK) {
+                Log.d(TAG, "handleMessage: Calculating... 10 * 90 from thread: " + Thread.currentThread().getName());
 
                 // Task
                 int x = 10;
                 int y = 90;
                 int result = y * x;
                 // Prepare result onto a bundle to send it back to main thread
-                Message message = Message.obtain(null, Main2Activity.MULTIPLICATION_TASK);
+                Message message = Message.obtain(null, Constant.MULTIPLICATION_TASK);
                 Bundle bundle = new Bundle();
-                bundle.putInt(Main2Activity.RESULT_KEY, result);
+                bundle.putInt(Constant.RESULT_KEY, result);
                 message.setData(bundle);
                 mMainThreadHandler.sendMessage(message);
             }
 
-            if (msg.what == Main2Activity.ADDITION_TASK) {
+            if (msg.what == Constant.ADDITION_TASK) {
 
             }
         }
