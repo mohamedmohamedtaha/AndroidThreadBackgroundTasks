@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,7 +13,7 @@ import com.mzdhr.androidthreadbackgroundtasks.pattern.MyFirstThread;
 
 /**
  * This Activity used for Thread, Looper, Handler Pattern. Along with MyFirstThread.java class.
- *
+ * <p>
  * Steps:
  * 1. Implement Handler.Callback.
  * 2. Override handleMessage().
@@ -23,15 +22,15 @@ import com.mzdhr.androidthreadbackgroundtasks.pattern.MyFirstThread;
  * 5. Init the Handler in onCreate().
  * 6. Override method onStart() and init the custom thread instance MyFirstThread.
  * 7. Override method onStop() and quit the custom thread instance MyFirstThread.
- *
+ * <p>
  * Sending Task:
  * 8. Send your work to the background custom thread, here I used the fab button,
  * otherwise onResume() after onStart() is good place.
- *
+ * <p>
  * Retrieving Result:
  * 9. In handleMessage() retrieve your message from the custom thread and extract the result from it.
  */
-public class Main2Activity extends AppCompatActivity implements Handler.Callback{
+public class Main2Activity extends AppCompatActivity implements Handler.Callback {
 
     // Fields
     private static final String TAG = "Main2Activity";
@@ -45,16 +44,14 @@ public class Main2Activity extends AppCompatActivity implements Handler.Callback
 
     @Override
     public boolean handleMessage(Message msg) {
-        switch (msg.what) {
-            case MULTIPLICATION_TASK:
-                Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
-                int result = msg.getData().getInt(RESULT_KEY, -1);
-                Log.d(TAG, "handleMessage: Result for multiplication task is: " + result);
-                break;
+        if (msg.what == MULTIPLICATION_TASK) {
+            Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
+            int result = msg.getData().getInt(RESULT_KEY, -1);
+            Log.d(TAG, "handleMessage: Result for multiplication task is: " + result);
+        }
 
-            case ADDITION_TASK:
-                Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
-                break;
+        if (msg.what == ADDITION_TASK) {
+            Log.d(TAG, "handleMessage: Current thread name is " + Thread.currentThread().getName());
         }
         return false;
     }
@@ -70,7 +67,7 @@ public class Main2Activity extends AppCompatActivity implements Handler.Callback
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create a message to
+                // Create a message and send it to the background custom thread
                 Message message = Message.obtain(null, MULTIPLICATION_TASK);
                 mMyFirstThread.sendMessageToFirstThread(message);
             }
