@@ -38,4 +38,8 @@ public interface NameDao {
 
     @Query("DELETE FROM names")
     void deleteAll();
+
+    // More about LIMIT at -> http://www.sqlitetutorial.net/sqlite-limit/
+    @Query("SELECT * FROM names ORDER BY name_id DESC LIMIT :start , :end")
+    LiveData<List<NameEntity>> getNamesBetween(int start, int end);
 }
