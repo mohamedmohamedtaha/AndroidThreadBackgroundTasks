@@ -110,7 +110,7 @@ public class NameRepository {
      * @param nameEntity
      */
     public void update(final NameEntity nameEntity) {
-        AppExecutors.getInstance().diskIO().execute( new Runnable(){
+        AppExecutor.getInstance().diskIO().execute( new Runnable(){
             @Override
             public void run() {
                 mNameDao.updateName(nameEntity);
@@ -119,7 +119,7 @@ public class NameRepository {
     }
 
     public void delete(final NameEntity nameEntity) {
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+        AppExecutor.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 mNameDao.deleteName(nameEntity);
@@ -128,7 +128,7 @@ public class NameRepository {
     }
 
     public void deleteAll() {
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+        AppExecutor.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 mNameDao.deleteAll();
