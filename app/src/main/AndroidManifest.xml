@@ -46,6 +46,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mzdhr.androidthreadbackgroundtasks.MainActivity"/>
         </activity>
+        <activity
+            android:name=".Main5Activity"
+            android:label="@string/title_activity_main5"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mzdhr.androidthreadbackgroundtasks.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

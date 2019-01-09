@@ -66,7 +66,7 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
      */
     @Override
     protected void onPostExecute(Long aLong) {
-
+        Log.d(TAG, "onPostExecute: result -> " + aLong);
         if (mMyAsyncTaskCallbacks != null) {
             mMyAsyncTaskCallbacks.onPostExecute(aLong);
         }
