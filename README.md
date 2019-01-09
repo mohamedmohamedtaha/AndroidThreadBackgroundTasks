@@ -15,9 +15,9 @@ Android Project with variety of classes that shows how to implements and deal wi
 
 ### Thread Patterns (Concurrency)
 - [ ] Thread, Looper, Handler Pattern (Main2Activity.java, MyFirstThread.java).
-- [ ] HandlerThreads Pattern (Main3Activity.java, MyFirstRunnable).
-- [ ] AsyncTask Pattern (Main).
-- [ ] Thread Pools P1 Pattern.
+- [ ] HandlerThreads Pattern (Main3Activity.java, MyFirstRunnable.java).
+- [ ] AsyncTask Pattern (Main5Activity.java, MyAsyncTask.java, MyAsyncTaskCallbacks.java).
+- [ ] Thread Pools P1 Pattern (Main4Activity.java, MyThreadPoolRunnable.java.java, AppExecutor.java, NameRepository.java).
 - [ ] Thread Pools P2 Pattern.
 - [ ] Loader Pattern.
 
