@@ -2,12 +2,14 @@ package com.mzdhr.androidthreadbackgroundtasks.database.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.util.Log;
 
 import com.mzdhr.androidthreadbackgroundtasks.database.AppDatabase;
 import com.mzdhr.androidthreadbackgroundtasks.database.dao.NameDao;
 import com.mzdhr.androidthreadbackgroundtasks.database.entity.NameEntity;
 import com.mzdhr.androidthreadbackgroundtasks.pattern.AppExecutor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -44,13 +46,19 @@ public class NameRepository {
         return sInstance;
     }
 
-
-
     public LiveData<List<NameEntity>> getNames() {
         return mNames;
     }
 
-    public LiveData<List<NameEntity>> getNames(int start, int end) {
+
+    public ArrayList<NameEntity> getNames(int start, int end) {
+        // TODO: 08/1/2019 Executors.newFixedThreadPool();
+
+        int availableProcessors = Runtime.getRuntime().availableProcessors();
+        Log.d(TAG, "getNames: Cores Numbers -> " + availableProcessors);
+
+
+
         return mNameDao.getNamesBetween(start, end);
     }
 
@@ -67,7 +75,7 @@ public class NameRepository {
         });
     }
 
-    public Long insertRetreveColumnId(final NameEntity nameEntity) {
+    public Long insertRetrieveColumnId(final NameEntity nameEntity) {
         // Prepare column id
         Long insertedColumnId = -1L;
 

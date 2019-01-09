@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.mzdhr.androidthreadbackgroundtasks.database.entity.NameEntity;
 import com.mzdhr.androidthreadbackgroundtasks.database.repository.NameRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class NameViewModel extends AndroidViewModel {
         return mNames;
     }
 
-    public LiveData<List<NameEntity>> getNames(int start, int end) {
+    public ArrayList<NameEntity> getNames(int start, int end) {
         return mRepository.getNames(start, end);
     }
 
@@ -36,8 +37,8 @@ public class NameViewModel extends AndroidViewModel {
         mRepository.insert(nameEntity);
     }
 
-    public Long insertNameRetreveColumnId(NameEntity nameEntity) {
-        return mRepository.insertRetreveColumnId(nameEntity);
+    public Long insertNameRetrieveColumnId(NameEntity nameEntity) {
+        return mRepository.insertRetrieveColumnId(nameEntity);
     }
 
     public void deleteName(NameEntity nameEntity) {

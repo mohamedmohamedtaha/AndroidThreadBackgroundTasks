@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 
 import com.mzdhr.androidthreadbackgroundtasks.database.entity.NameEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,5 +42,5 @@ public interface NameDao {
 
     // More about LIMIT at -> http://www.sqlitetutorial.net/sqlite-limit/
     @Query("SELECT * FROM names ORDER BY name_id DESC LIMIT :start , :end")
-    LiveData<List<NameEntity>> getNamesBetween(int start, int end);
+    ArrayList<NameEntity> getNamesBetween(int start, int end);
 }
