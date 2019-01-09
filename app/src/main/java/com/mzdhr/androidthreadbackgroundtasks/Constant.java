@@ -11,7 +11,8 @@ public class Constant {
     // Tasks
     public static int MULTIPLICATION_TASK = 101;
     public static int ADDITION_TASK = 102;
-    public static final int RESULT_THREAD_POOL_KEY = 201;
+    public static final int DATABASE_MULTI_QUERY_TASK = 103;
 
     public static String RESULT_KEY = "result_key";
+    public static String DATABASE_MULTI_QUERY_RESULT = "result_multi_query_key";
 }

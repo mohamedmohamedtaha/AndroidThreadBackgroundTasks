@@ -3,10 +3,13 @@ package com.mzdhr.androidthreadbackgroundtasks.pattern;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 
 import com.mzdhr.androidthreadbackgroundtasks.Constant;
 import com.mzdhr.androidthreadbackgroundtasks.database.AppDatabase;
 import com.mzdhr.androidthreadbackgroundtasks.database.entity.NameEntity;
+
+import org.parceler.Parcels;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -34,12 +37,19 @@ public class MyThreadPoolRunnable implements Runnable{
 
     @Override
     public void run() {
-
-        Message message = Message.obtain(null, Constant.RESULT_THREAD_POOL_KEY); // FIXME: 08/1/2019 naming -> RESULT_THREAD_POOL_KEY
-
+        // Query the database, and parcel the result.
         ArrayList<NameEntity> names = new ArrayList<>(mAppDatabase.getNameDao().getNamesBetween(mStart, mEnd));
+        Parcelable wrappedNames = Parcels.wrap(names);
+
+        // Put the result into bundle.
         Bundle bundle = new Bundle();
-       // bundle.putStringArrayList("RESULT_THREAD_POOL_KEY", names);
-       // bundle
+        bundle.putParcelable(Constant.DATABASE_MULTI_QUERY_RESULT, wrappedNames);
+
+        // Create message object and Put that bundle in it.
+        Message message = Message.obtain(null, Constant.DATABASE_MULTI_QUERY_TASK);
+        message.setData(bundle);
+
+        // Send message to main thread handler
+        mMainThreadHandler.get().sendMessage(message);
     }
 }

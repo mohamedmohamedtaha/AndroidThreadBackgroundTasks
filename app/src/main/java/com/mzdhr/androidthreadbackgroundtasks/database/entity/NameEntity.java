@@ -5,18 +5,21 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import org.parceler.Parcel;
+
 /**
  * Created by MohammadL on 08/1/2019
  * Contact me at mmlaif@gmail.com
  */
+@Parcel
 @Entity(tableName = "names")
 public class NameEntity {
     // Fields
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "name_id")
-    private int mId;
-    private String mName;
-    private String mNumber;
+    public int mId;
+    public String mName;
+    public String mNumber;
 
     // Room Constructor
     public NameEntity(int id, String name, String number) {
