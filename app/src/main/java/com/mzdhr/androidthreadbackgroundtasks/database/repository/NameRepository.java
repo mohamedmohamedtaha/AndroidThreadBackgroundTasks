@@ -112,9 +112,9 @@ public class NameRepository {
     /**
      * Should be examples for each:
      *         Executors.newScheduledThreadPool();
-     *         Executors.newFixedThreadPool();
-     *         Executors.newSingleThreadExecutor();    // Executors.newSingleThreadScheduledExecutor();
-     *         Executors.newCachedThreadPool();
+     *         Executors.newFixedThreadPool();          DONE
+     *         Executors.newSingleThreadExecutor();     DONE
+     *         Executors.newCachedThreadPool(); // Executors.newSingleThreadScheduledExecutor();
      * @param nameEntity
      */
     public void update(final NameEntity nameEntity) {
