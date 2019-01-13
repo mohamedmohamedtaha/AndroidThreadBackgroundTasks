@@ -5,7 +5,7 @@ package com.mzdhr.androidthreadbackgroundtasks.pattern;
  * Contact me at mmlaif@gmail.com
  */
 public interface MyAsyncTaskCallbacks {
-    public void onProgressUpdate(Integer values);
-    public void onPostExecute(Long result);
+    public void onTriggeredProgressUpdate(Integer values);
+    public void onFinishPostExecute(Long result);
 
 }

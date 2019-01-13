@@ -51,10 +51,10 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
      */
     @Override
     protected void onProgressUpdate(Integer... values) {
-        Log.d(TAG, "onProgressUpdate: " + values[0]);
+        Log.d(TAG, "onTriggeredProgressUpdate: " + values[0]);
 
         if (mMyAsyncTaskCallbacks != null) {
-            mMyAsyncTaskCallbacks.onProgressUpdate(values[0]);
+            mMyAsyncTaskCallbacks.onTriggeredProgressUpdate(values[0]);
         }
 
         super.onProgressUpdate(values);
@@ -66,11 +66,13 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
      */
     @Override
     protected void onPostExecute(Long aLong) {
-        Log.d(TAG, "onPostExecute: result -> " + aLong);
+        Log.d(TAG, "onFinishPostExecute: result -> " + aLong);
         if (mMyAsyncTaskCallbacks != null) {
-            mMyAsyncTaskCallbacks.onPostExecute(aLong);
+            mMyAsyncTaskCallbacks.onFinishPostExecute(aLong);
         }
 
         super.onPostExecute(aLong);
     }
+
+
 }

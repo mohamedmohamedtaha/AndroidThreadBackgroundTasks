@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.mzdhr.androidthreadbackgroundtasks.Constant;
 import com.mzdhr.androidthreadbackgroundtasks.database.AppDatabase;
@@ -39,6 +40,11 @@ public class MyThreadPoolRunnable implements Runnable{
     public void run() {
         // Query the database, and parcel the result.
         ArrayList<NameEntity> names = new ArrayList<>(mAppDatabase.getNameDao().getNamesBetween(mStart, mEnd));
+
+        for (int i = 0; i < names.size(); i++) {
+            Log.d(TAG, "handleMessage: " + names.get(i).getName() + " - " + names.get(i).getNumber() + " - " + names.get(i).getId() + " | From Thread -> " + Thread.currentThread().getName());
+        }
+
         Parcelable wrappedNames = Parcels.wrap(names);
 
         // Put the result into bundle.

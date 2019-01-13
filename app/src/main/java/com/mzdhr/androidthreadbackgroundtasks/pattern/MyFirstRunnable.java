@@ -22,6 +22,7 @@ import java.lang.ref.WeakReference;
  * 4. Do your work on run() then wrap result into the main thread handler, to send it to main thread.
  */
 public class MyFirstRunnable implements Runnable{
+
     // Fields
     private static final String TAG = "MyFirstRunnable";
     private WeakReference<Handler> mMainThreadHandler;

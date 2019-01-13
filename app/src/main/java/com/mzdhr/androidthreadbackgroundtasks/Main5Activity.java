@@ -36,15 +36,15 @@ public class Main5Activity extends AppCompatActivity implements MyAsyncTaskCallb
     }
 
     @Override
-    public void onProgressUpdate(Integer values) {
+    public void onTriggeredProgressUpdate(Integer values) {
         // Update Progress bar here
-        Log.d(TAG, "onProgressUpdate: " + values);
+        Log.d(TAG, "onTriggeredProgressUpdate: " + values);
     }
 
     @Override
-    public void onPostExecute(Long result) {
+    public void onFinishPostExecute(Long result) {
         // Publish result here
-        Log.d(TAG, "onPostExecute: result -> " + result);
+        Log.d(TAG, "onFinishPostExecute: result -> " + result);
     }
 
 }

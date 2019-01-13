@@ -58,8 +58,8 @@ public class NameRepository {
         Log.d(TAG, "getNames: Cores Numbers -> " + availableProcessors);
 
 
-
-        return mNameDao.getNamesBetween(start, end);
+        // Convert List to ArrayList
+        return new ArrayList<NameEntity>(mNameDao.getNamesBetween(start, end));
     }
 
     public LiveData<NameEntity> getNameById(final int name) {
@@ -96,7 +96,7 @@ public class NameRepository {
         // Retrieve the result into our future object, within 1 second or cancel it.
         // .get() -> Blocks the Thread, so we should put a max duration for it.
         try {
-            insertedColumnId = future.get(1, TimeUnit.MINUTES);
+            insertedColumnId = future.get(1, TimeUnit.SECONDS);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

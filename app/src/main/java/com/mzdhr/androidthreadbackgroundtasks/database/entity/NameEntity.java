@@ -6,12 +6,13 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 /**
  * Created by MohammadL on 08/1/2019
  * Contact me at mmlaif@gmail.com
  */
-@Parcel
+@Parcel(Parcel.Serialization.BEAN)
 @Entity(tableName = "names")
 public class NameEntity {
     // Fields
@@ -30,7 +31,7 @@ public class NameEntity {
 
     // Constructor to create new object from this class
     @Ignore
-
+    @ParcelConstructor
     public NameEntity(String name, String number) {
         mName = name;
         mNumber = number;

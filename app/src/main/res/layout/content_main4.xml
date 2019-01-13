@@ -9,4 +9,11 @@
     tools:context=".Main4Activity"
     tools:showIn="@layout/activity_main4">
 
+    <Button
+        android:text="Log Result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="logResult"
+        />
+
 </android.support.constraint.ConstraintLayout>
