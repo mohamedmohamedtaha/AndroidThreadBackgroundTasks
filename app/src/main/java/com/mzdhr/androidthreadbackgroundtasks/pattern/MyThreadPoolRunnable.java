@@ -23,14 +23,14 @@ import java.util.ArrayList;
 public class MyThreadPoolRunnable implements Runnable{
 
     private static final String TAG = "MyThreadPoolRunnable";
-    private int mStart;
-    private int mEnd;
+    private int mStartAt;
+    private int mChunkSize;
     private AppDatabase mAppDatabase;
     private WeakReference<Handler> mMainThreadHandler;
 
-    public MyThreadPoolRunnable(int start, int end, AppDatabase appDatabase, Handler mainThreadHandler) {
-        mStart = start;
-        mEnd = end;
+    public MyThreadPoolRunnable(int startAt, int chunkSize, AppDatabase appDatabase, Handler mainThreadHandler) {
+        mStartAt = startAt;
+        mChunkSize = chunkSize;
         mAppDatabase = appDatabase;
         mMainThreadHandler = new WeakReference<>(mainThreadHandler);
     }
@@ -39,7 +39,7 @@ public class MyThreadPoolRunnable implements Runnable{
     @Override
     public void run() {
         // Query the database, and parcel the result.
-        ArrayList<NameEntity> names = new ArrayList<>(mAppDatabase.getNameDao().getNamesBetween(mStart, mEnd));
+        ArrayList<NameEntity> names = new ArrayList<>(mAppDatabase.getNameDao().getNamesBetween(mStartAt, mChunkSize));
 
         for (int i = 0; i < names.size(); i++) {
             Log.d(TAG, "handleMessage: " + names.get(i).getName() + " - " + names.get(i).getNumber() + " - " + names.get(i).getId() + " | From Thread -> " + Thread.currentThread().getName());
