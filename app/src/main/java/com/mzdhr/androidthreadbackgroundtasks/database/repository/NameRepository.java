@@ -95,6 +95,7 @@ public class NameRepository {
 
         // Retrieve the result into our future object, within 1 second or cancel it.
         // .get() -> Blocks the Thread, so we should put a max duration for it.
+        // We can use future.isDone() to know if the task is done or not before using future.get().
         try {
             insertedColumnId = future.get(1, TimeUnit.SECONDS);
         } catch (ExecutionException e) {

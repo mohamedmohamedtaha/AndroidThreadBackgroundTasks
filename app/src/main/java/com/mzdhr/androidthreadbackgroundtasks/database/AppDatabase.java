@@ -5,12 +5,15 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mzdhr.androidthreadbackgroundtasks.database.dao.NameDao;
 import com.mzdhr.androidthreadbackgroundtasks.database.entity.NameEntity;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by MohammadL on 08/1/2019
@@ -51,26 +54,48 @@ public abstract class AppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             // new PopulateDbAsync(sInstance).execute();   // todo: use executors and another example for asynctask
-            AsyncTask<Void, Void, Void> aa = new AsyncTask<Void, Void, Void>() {
+//            AsyncTask<Void, Void, Void> aa = new AsyncTask<Void, Void, Void>() {
+//                @Override
+//                protected Void doInBackground(Void... voids) {
+//                    NameDao nameDao = sInstance.getNameDao();
+//                    nameDao.insertName(new NameEntity("Mohammad1", "0555555551"));
+//                    nameDao.insertName(new NameEntity("Mohammad2", "0555555552"));
+//                    nameDao.insertName(new NameEntity("Mohammad3", "0555555553"));
+//                    nameDao.insertName(new NameEntity("Mohammad4", "0555555554"));
+//                    nameDao.insertName(new NameEntity("Mohammad5", "0555555555"));
+//                    nameDao.insertName(new NameEntity("Mohammad6", "0555555556"));
+//                    nameDao.insertName(new NameEntity("Mohammad7", "0555555557"));
+//                    nameDao.insertName(new NameEntity("Mohammad8", "0555555558"));
+//                    nameDao.insertName(new NameEntity("Mohammad9", "0555555559"));
+//                    nameDao.insertName(new NameEntity("Mohammad10", "05555555510"));
+//                    return null;
+//                }
+//            };
+//
+//            aa.execute();
+
+            // Or by using executors
+            ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+            scheduledExecutorService.schedule(new Runnable() {
                 @Override
-                protected Void doInBackground(Void... voids) {
+                public void run() {
                     NameDao nameDao = sInstance.getNameDao();
-                    nameDao.insertName(new NameEntity("Mohammad1", "0555555551"));
-                    nameDao.insertName(new NameEntity("Mohammad2", "0555555552"));
-                    nameDao.insertName(new NameEntity("Mohammad3", "0555555553"));
-                    nameDao.insertName(new NameEntity("Mohammad4", "0555555554"));
-                    nameDao.insertName(new NameEntity("Mohammad5", "0555555555"));
-                    nameDao.insertName(new NameEntity("Mohammad6", "0555555556"));
-                    nameDao.insertName(new NameEntity("Mohammad7", "0555555557"));
-                    nameDao.insertName(new NameEntity("Mohammad8", "0555555558"));
-                    nameDao.insertName(new NameEntity("Mohammad9", "0555555559"));
-                    nameDao.insertName(new NameEntity("Mohammad10", "05555555510"));
-                    return null;
+                    nameDao.insertName(new NameEntity("Ahmad1", "0555555551"));
+                    nameDao.insertName(new NameEntity("Ahmad2", "0555555552"));
+                    nameDao.insertName(new NameEntity("Ahmad3", "0555555553"));
+                    nameDao.insertName(new NameEntity("Ahmad4", "0555555554"));
+                    nameDao.insertName(new NameEntity("Ahmad5", "0555555555"));
+                    nameDao.insertName(new NameEntity("Ahmad6", "0555555556"));
+                    nameDao.insertName(new NameEntity("Ahmad7", "0555555557"));
+                    nameDao.insertName(new NameEntity("Ahmad8", "0555555558"));
+                    nameDao.insertName(new NameEntity("Ahmad9", "0555555559"));
+                    nameDao.insertName(new NameEntity("Ahmad10", "05555555510"));
+                    Log.d(TAG, "run: Data Created by ExecutorService scheduled");
+
                 }
-            };
+            }, 1, TimeUnit.SECONDS);
 
-            aa.execute();
-
+            scheduledExecutorService.shutdown();
         }
 
         @Override
