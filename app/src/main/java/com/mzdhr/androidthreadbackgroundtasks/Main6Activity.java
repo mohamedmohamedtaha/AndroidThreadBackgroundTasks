@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.mzdhr.androidthreadbackgroundtasks.service.MyIntentService;
 import com.mzdhr.androidthreadbackgroundtasks.service.MyStartedService;
 
 public class Main6Activity extends AppCompatActivity {
@@ -30,10 +31,8 @@ public class Main6Activity extends AppCompatActivity {
 
     private void startStartedService() {
         Intent intent = new Intent(Main6Activity.this, MyStartedService.class);
-
         intent.putExtra(Constant.FIRST_NUMBER, 10);
         intent.putExtra(Constant.SECOND_NUMBER, 20);
-
         startService(intent);
     }
 
@@ -43,6 +42,17 @@ public class Main6Activity extends AppCompatActivity {
         // Or we can use stopSelf() inside the service class ot stop it, after our work has done.
     }
 
+
+    private void startIntentService() {
+        Intent intent = new Intent(Main6Activity.this, MyIntentService.class);
+        intent.putExtra(Constant.FIRST_NUMBER, 10);
+        intent.putExtra(Constant.SECOND_NUMBER, 20);
+        startService(intent);
+    }
+
+    private void stopIntentService() {
+        // No need.
+    }
 
 
 }

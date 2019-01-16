@@ -2,6 +2,7 @@ package com.mzdhr.androidthreadbackgroundtasks.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -35,8 +36,19 @@ public class MyStartedService extends Service {
         int resultNumber = firstNumber + secondNumber;
         Log.d(TAG, "onStartCommand: Result -> " + resultNumber);
 
+
+        // Background Thread (If you want to make long task, or use IntentService)
+        AsyncTask task = new BackgroundAsyncTask().execute();
+
+        // Return Tags
         // If Android destroy our service, it gonna restart. Intent won't lost with this tag.
-        return START_REDELIVER_INTENT;
+        return Service.START_REDELIVER_INTENT;
+
+        // Restart the service, but Intent lost.
+        //return Service.START_STICKY;
+
+        // No Restart, Intent lost.
+        //return START_NOT_STICKY;
     }
 
     @Nullable
@@ -53,4 +65,11 @@ public class MyStartedService extends Service {
     }
 
 
+    private class BackgroundAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+    }
 }
