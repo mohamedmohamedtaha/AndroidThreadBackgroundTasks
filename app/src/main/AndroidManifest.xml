@@ -58,6 +58,7 @@
 
         <service android:name=".service.MyStartedService"/>
         <service android:name=".service.MyIntentService"/>
+        <service android:name=".service.MyBoundService"/>
 
         <activity
             android:name=".Main6Activity"

@@ -69,7 +69,17 @@ public class MyStartedService extends Service {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            // Do our long work on the background and different thread.
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            // We can stop our service here like:
+            // stopSelf();
+        }
+
     }
+
 }
