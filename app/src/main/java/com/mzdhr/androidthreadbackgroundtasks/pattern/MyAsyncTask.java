@@ -1,7 +1,6 @@
 package com.mzdhr.androidthreadbackgroundtasks.pattern;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 /**
  * Created by MohammadL on 09/1/2019
@@ -40,6 +39,13 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
         for (int i = 0; i < name.length(); i++) {
             result = result + 1;
             publishProgress(i);
+
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return result;
@@ -51,12 +57,9 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
      */
     @Override
     protected void onProgressUpdate(Integer... values) {
-        Log.d(TAG, "onTriggeredProgressUpdate: " + values[0]);
-
         if (mMyAsyncTaskCallbacks != null) {
             mMyAsyncTaskCallbacks.onTriggeredProgressUpdate(values[0]);
         }
-
         super.onProgressUpdate(values);
     }
 
@@ -66,7 +69,7 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
      */
     @Override
     protected void onPostExecute(Long aLong) {
-        Log.d(TAG, "onFinishPostExecute: result -> " + aLong);
+        //Log.d(TAG, "onFinishPostExecute: result -> " + aLong);
         if (mMyAsyncTaskCallbacks != null) {
             mMyAsyncTaskCallbacks.onFinishPostExecute(aLong);
         }

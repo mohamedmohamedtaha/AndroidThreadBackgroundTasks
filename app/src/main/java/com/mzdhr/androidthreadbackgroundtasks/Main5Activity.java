@@ -32,7 +32,7 @@ public class Main5Activity extends AppCompatActivity implements MyAsyncTaskCallb
     }
 
     private void triggerAsyncTask() {
-        new MyAsyncTask(this).execute("Mohammad");
+        new MyAsyncTask(this).execute("Ahmad");
     }
 
     @Override

@@ -55,6 +55,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mzdhr.androidthreadbackgroundtasks.MainActivity"/>
         </activity>
+
+        <service android:name=".service.MyStartedService"/>
+
+        <activity
+            android:name=".Main6Activity"
+            android:label="@string/title_activity_main6"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

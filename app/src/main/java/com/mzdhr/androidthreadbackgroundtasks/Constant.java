@@ -15,4 +15,9 @@ public class Constant {
 
     public static String RESULT_KEY = "result_key";
     public static String DATABASE_MULTI_QUERY_RESULT = "result_multi_query_key";
+
+    public static String FIRST_NUMBER = "FIRST_NUMBER";
+    public static String SECOND_NUMBER = "SECOND_NUMBER";
+    public static String RESULT_NUMBER = "RESULT_NUMBER";
+
 }
