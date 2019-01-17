@@ -1,11 +1,14 @@
 package com.mzdhr.androidthreadbackgroundtasks;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mzdhr.androidthreadbackgroundtasks.service.MyBoundService;
 import com.mzdhr.androidthreadbackgroundtasks.service.MyIntentService;
 import com.mzdhr.androidthreadbackgroundtasks.service.MyStartedService;
 
@@ -21,6 +25,7 @@ public class Main6Activity extends AppCompatActivity {
 
     private TextView mResultTextView;
 
+    // *************************************(Started Service)***************************************
     // Used for Started Service Example (Started Service)
     private BroadcastReceiver mStartedServiceBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -46,8 +51,10 @@ public class Main6Activity extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(mStartedServiceBroadcastReceiver);
     }
+    // ***********************************************************************************
 
 
+    // ***************************************(IntentService)***************************************
     // Field used for IntentService (IntentService)
     private Handler mHandler = new Handler();
 
@@ -79,7 +86,46 @@ public class Main6Activity extends AppCompatActivity {
         }
 
     }
+    // ***********************************************************************************
 
+
+    // **************************************(Bound Service)****************************************
+    private boolean isBound = false;
+    private MyBoundService mMyBoundService;
+
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            isBound = true;
+
+            MyBoundService.MyBinder myBinder = (MyBoundService.MyBinder) service;
+            mMyBoundService = myBinder.getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
+
+
+    // Bind the Service
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(Main6Activity.this, MyBoundService.class);
+        intent.putExtra(Constant.FIRST_NUMBER, 10);
+        intent.putExtra(Constant.SECOND_NUMBER, 20);
+        bindService(intent, mServiceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(mServiceConnection);
+    }
+
+// ***********************************************************************************
 
 
     @Override
@@ -114,7 +160,6 @@ public class Main6Activity extends AppCompatActivity {
         // Or we can use stopSelf() inside the service class ot stop it, after our work has done.
     }
 
-
     public void startIntentService(View view) {
 
 
@@ -128,9 +173,17 @@ public class Main6Activity extends AppCompatActivity {
         startService(intent);
     }
 
-    private void stopIntentService() {
+    public void stopIntentService() {
         // No need.
     }
 
+    public void startBoundService(View view) {
+        // It's already bounded with onStart().
+        // Getting data from bound service
+        if (isBound) {
+            String result = String.valueOf(mMyBoundService.getResult()) + " - From BoundService";
+            mResultTextView.setText(result);
+        }
+    }
 
 }

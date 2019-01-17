@@ -21,20 +21,17 @@ public class MyBoundService extends Service {
 
     // Our Binder Class
     public class MyBinder extends Binder {
-        MyBoundService getService() {
+
+        public MyBoundService getService() {
             return MyBoundService.this;
         }
+
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return mMyBinder;
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand: Called.");
+        Log.d(TAG, "onBind: Called.");
 
         int firstNumber = intent.getIntExtra(Constant.FIRST_NUMBER, -1);
         int secondNumber = intent.getIntExtra(Constant.SECOND_NUMBER, -2);
@@ -42,13 +39,25 @@ public class MyBoundService extends Service {
         int resultNumber = firstNumber + secondNumber;
         mMyBinder.getService().setResult(resultNumber);
 
-        return Service.START_NOT_STICKY;
+        return mMyBinder;
     }
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return super.onUnbind(intent);
+    }
+
 
     private void setResult(int resultNumber) {
         mResult = resultNumber;
     }
 
+    // Used to send bound
     public int getResult() {
         return mResult;
     }
