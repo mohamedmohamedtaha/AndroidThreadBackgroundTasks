@@ -2,6 +2,8 @@ package com.mzdhr.androidthreadbackgroundtasks.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -29,6 +31,13 @@ public class MyIntentService extends IntentService {
 
         int resultNumber = firstNumber + secondNumber;
         Log.d(TAG, "onStartCommand: Result -> " + resultNumber);
+
+
+        // Send to Activity by ResultReceiver
+        ResultReceiver resultReceiver = intent.getParcelableExtra(Constant.RECEIVE_RESULT_KEY);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.RESULT_NUMBER, String.valueOf(resultNumber) + " - From IntentService");
+        resultReceiver.send(88, bundle);    // 88 our code for this task
     }
 
 }

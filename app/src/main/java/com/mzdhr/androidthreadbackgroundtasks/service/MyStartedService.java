@@ -38,7 +38,7 @@ public class MyStartedService extends Service {
 
         // Send to Local Broadcast
         Intent intentForBroadcast = new Intent("action.my_started_service.to.activity");
-        intentForBroadcast.putExtra(Constant.RESULT_NUMBER, String.valueOf(resultNumber));
+        intentForBroadcast.putExtra(Constant.RESULT_NUMBER, String.valueOf(resultNumber) + " - From StartedService");
         sendBroadcast(intentForBroadcast);
 
 

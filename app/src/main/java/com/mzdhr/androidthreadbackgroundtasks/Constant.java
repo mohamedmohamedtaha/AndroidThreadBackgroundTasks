@@ -6,6 +6,8 @@ package com.mzdhr.androidthreadbackgroundtasks;
  */
 public class Constant {
 
+
+
     private Constant(){}
 
     // Tasks
@@ -19,5 +21,7 @@ public class Constant {
     public static String FIRST_NUMBER = "FIRST_NUMBER";
     public static String SECOND_NUMBER = "SECOND_NUMBER";
     public static String RESULT_NUMBER = "RESULT_NUMBER";
+
+    public static final String RECEIVE_RESULT_KEY = "RECEIVE_RESULT_KEY";
 
 }
