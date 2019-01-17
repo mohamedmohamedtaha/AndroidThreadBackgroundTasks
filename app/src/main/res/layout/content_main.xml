@@ -48,7 +48,14 @@
         android:onClick="openAsyncTaskActivity"
         />
 
-
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Services"
+        android:onClick="openServicesActivity"
+        />
 
 
 

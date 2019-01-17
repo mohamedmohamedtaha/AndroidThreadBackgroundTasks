@@ -31,5 +31,4 @@ public class MyIntentService extends IntentService {
         Log.d(TAG, "onStartCommand: Result -> " + resultNumber);
     }
 
-
 }

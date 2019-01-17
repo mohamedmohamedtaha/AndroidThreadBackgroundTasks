@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openServicesActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, Main6Activity.class);
+        startActivity(intent);
+    }
 
 
     @Override

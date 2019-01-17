@@ -36,6 +36,11 @@ public class MyStartedService extends Service {
         int resultNumber = firstNumber + secondNumber;
         Log.d(TAG, "onStartCommand: Result -> " + resultNumber);
 
+        // Send to Local Broadcast
+        Intent intentForBroadcast = new Intent("action.my_started_service.to.activity");
+        intentForBroadcast.putExtra(Constant.RESULT_NUMBER, String.valueOf(resultNumber));
+        sendBroadcast(intentForBroadcast);
+
 
         // Background Thread (If you want to make long task, or use IntentService)
         AsyncTask task = new BackgroundAsyncTask().execute();
