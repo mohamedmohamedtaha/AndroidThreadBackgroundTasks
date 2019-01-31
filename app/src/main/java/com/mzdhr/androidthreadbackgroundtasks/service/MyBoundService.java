@@ -62,6 +62,4 @@ public class MyBoundService extends Service {
         return mResult;
     }
 
-
-
 }

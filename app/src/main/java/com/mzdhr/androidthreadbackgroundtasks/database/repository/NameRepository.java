@@ -75,6 +75,19 @@ public class NameRepository {
         });
     }
 
+    public void insertNoRetrieveColumnId(final NameEntity nameEntity) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                mNameDao.insertName(nameEntity);
+            }
+        };
+
+        executorService.execute(runnable);
+    }
+
     public Long insertRetrieveColumnId(final NameEntity nameEntity) {
         // Prepare column id
         Long insertedColumnId = -1L;

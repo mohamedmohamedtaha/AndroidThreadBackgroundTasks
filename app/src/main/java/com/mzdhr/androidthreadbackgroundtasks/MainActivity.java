@@ -2,16 +2,23 @@ package com.mzdhr.androidthreadbackgroundtasks;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.mzdhr.androidthreadbackgroundtasks.thread.MyRunnable;
+import com.mzdhr.androidthreadbackgroundtasks.thread.MyThread;
 
 /**
  *
  */
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MyThread myThread = new MyThread();
+        myThread.run();
+
+        MyRunnable myRunnable = new MyRunnable();
+        Thread thread = new Thread(myRunnable);
+        thread.run();
+
+        Handler handler = new Handler();
+        handler.postDelayed(myRunnable, 5000);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "run: I'm running from Thread -> " + Thread.currentThread().getName());
+            }
+        });
+
+
     }
 
     public void openThreadLooperHandlerActivity(View view) {
@@ -71,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }
