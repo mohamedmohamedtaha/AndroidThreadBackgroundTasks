@@ -3,7 +3,6 @@ package com.mzdhr.androidthreadbackgroundtasks.broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.util.Log;
 
 /**
@@ -18,7 +17,5 @@ public class MyFirstReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: Called! on thread -> " + Thread.currentThread().getName());
 
-        IntentFilter intentFilter = new IntentFilter();
-        IntentFilter.
     }
 }

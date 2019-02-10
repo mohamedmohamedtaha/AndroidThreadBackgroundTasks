@@ -67,7 +67,10 @@
         </activity>
 
         <receiver android:name=".broadcast.MyFirstReceiver">
-        </receiver>
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+            </intent-filter>
+        </receiver> ا
 
         <activity
             android:name=".Main7Activity"
