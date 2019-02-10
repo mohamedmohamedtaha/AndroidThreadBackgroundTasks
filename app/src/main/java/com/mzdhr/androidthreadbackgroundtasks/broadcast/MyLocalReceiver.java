@@ -16,9 +16,12 @@ public class MyLocalReceiver extends BroadcastReceiver {
         // Get data from the intent that runs this broadcast.
         int number = intent.getIntExtra("number", 0);
 
+        // Calculate
+        int result = number * 2;
+
         // Create an intent and put result in it, to send it back.
         Intent returningIntent = new Intent();
-        intent.putExtra("number", number * 2);
+        intent.putExtra("number", result);
 
         // Send intent and result back by using Local Broadcast.
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
