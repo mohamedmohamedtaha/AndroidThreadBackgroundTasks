@@ -27,12 +27,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        playMusic();
+        downloadImage();
+        updateUserInfo();
+        DeleteTemp();
+
+
         MyThread myThread = new MyThread();
-        myThread.run();
+        myThread.start();
 
         MyRunnable myRunnable = new MyRunnable();
         Thread thread = new Thread(myRunnable);
-        thread.run();
+        thread.start();
 
         Handler handler = new Handler();
         handler.postDelayed(myRunnable, 5000);
@@ -45,6 +51,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        int age1 = 20;
+        for (int i = 0; i < 10; i++) {
+            age1++;
+        }
+
+        int age2 = 10;
+        for (int i = 0; i < 10; i++) {
+            age2++;
+        }
+
+
+
+    }
+
+    private void DeleteTemp() {
+
+    }
+
+    private void updateUserInfo() {
+
+    }
+
+    private void downloadImage() {
+
+    }
+
+    private void playMusic() {
     }
 
     public void openThreadLooperHandlerActivity(View view) {

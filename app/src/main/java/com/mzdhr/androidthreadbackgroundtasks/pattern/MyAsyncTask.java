@@ -5,14 +5,13 @@ import android.os.AsyncTask;
 /**
  * Created by MohammadL on 09/1/2019
  * Contact me at mmlaif@gmail.com
- *
+ * <p>
  * Take a name, return how many characters in it.
-         */
+ */
 public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
 
     private static final String TAG = "MyAsyncTask";
     private MyAsyncTaskCallbacks mMyAsyncTaskCallbacks;
-
 
     public MyAsyncTask(MyAsyncTaskCallbacks myAsyncTaskCallbacks) {
         mMyAsyncTaskCallbacks = myAsyncTaskCallbacks;
@@ -27,7 +26,6 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
         super.onPreExecute();
     }
 
-
     /**
      * Runs on Background Thread
      */
@@ -40,7 +38,6 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
             result = result + 1;
             publishProgress(i);
 
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -50,7 +47,6 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
 
         return result;
     }
-
 
     /**
      * Runs on Main Thread
@@ -63,19 +59,15 @@ public class MyAsyncTask extends AsyncTask<String, Integer, Long> {
         super.onProgressUpdate(values);
     }
 
-
     /**
      * Runs on Main Thread
      */
     @Override
     protected void onPostExecute(Long aLong) {
-        //Log.d(TAG, "onFinishPostExecute: result -> " + aLong);
         if (mMyAsyncTaskCallbacks != null) {
             mMyAsyncTaskCallbacks.onFinishPostExecute(aLong);
         }
-
         super.onPostExecute(aLong);
     }
-
 
 }

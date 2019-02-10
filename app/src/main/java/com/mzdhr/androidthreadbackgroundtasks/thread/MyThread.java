@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by MohammadL on 31/1/2019
  * Contact me at mmlaif@gmail.com
  */
-public class MyThread extends Thread{
+public class MyThread extends Thread {
 
     private static final String TAG = "MyThread";
 

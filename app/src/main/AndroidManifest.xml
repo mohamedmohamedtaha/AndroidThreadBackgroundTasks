@@ -67,12 +67,13 @@
         </activity>
 
         <receiver android:name=".broadcast.MyFirstReceiver">
-                  <intent-filter>
-                      <action android:name=""/>
-                  </intent-filter>
-
         </receiver>
 
+        <activity
+            android:name=".Main7Activity"
+            android:label="@string/title_activity_main7"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

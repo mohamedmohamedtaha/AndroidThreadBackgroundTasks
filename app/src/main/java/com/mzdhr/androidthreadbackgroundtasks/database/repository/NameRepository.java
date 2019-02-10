@@ -102,7 +102,6 @@ public class NameRepository {
 
         // Create an executor
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-
         // Create a Future object
         Future<Long> future = executorService.submit(callable);
 
