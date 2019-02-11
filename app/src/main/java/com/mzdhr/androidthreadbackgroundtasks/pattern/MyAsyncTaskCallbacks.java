@@ -7,5 +7,4 @@ package com.mzdhr.androidthreadbackgroundtasks.pattern;
 public interface MyAsyncTaskCallbacks {
     public void onTriggeredProgressUpdate(Integer values);
     public void onFinishPostExecute(Long result);
-
 }

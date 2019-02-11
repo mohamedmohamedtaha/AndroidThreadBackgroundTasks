@@ -29,6 +29,7 @@ public class Main5Activity extends AppCompatActivity implements MyAsyncTaskCallb
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void triggerAsyncTask() {
