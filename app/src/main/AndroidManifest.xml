@@ -70,13 +70,23 @@
             <intent-filter>
                 <action android:name="android.intent.action.AIRPLANE_MODE"/>
             </intent-filter>
-        </receiver> ا
+        </receiver>
+        ا
 
         <activity
             android:name=".Main7Activity"
             android:label="@string/title_activity_main7"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <service
+            android:name=".task.MyJobScheduler"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            >
+        </service>
+
     </application>
 
 </manifest>
