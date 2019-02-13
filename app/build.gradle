@@ -49,4 +49,7 @@ dependencies {
     // https://github.com/johncarl81/parceler
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
+    // Firebase JobDispatcher
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 }
