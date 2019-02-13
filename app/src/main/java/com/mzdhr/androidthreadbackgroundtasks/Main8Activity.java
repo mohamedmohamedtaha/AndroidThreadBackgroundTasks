@@ -143,7 +143,16 @@ public class Main8Activity extends AppCompatActivity {
 
 
 
-
+        // Get result from work manager
+        WorkManager.getInstance().getWorkInfoByIdLiveData(oneTimeWorkRequestId).observe(this, new Observer<WorkInfo>() {
+            @Override
+            public void onChanged(@Nullable WorkInfo workInfo) {
+                if (workInfo != null && workInfo.getState().isFinished()){
+                    String result = workInfo.getOutputData().getString("RESULT");
+                    Log.d(TAG, "onChanged: " + result);
+                }
+            }
+        });
     }
 
     private void getResultWorkManager() {
