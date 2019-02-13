@@ -52,4 +52,8 @@ dependencies {
 
     // Firebase JobDispatcher
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
+    // Work Manager
+    def work_version = "1.0.0-beta05"
+    implementation "android.arch.work:work-runtime:$work_version"
 }
