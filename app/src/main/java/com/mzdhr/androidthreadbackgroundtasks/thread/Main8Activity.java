@@ -44,6 +44,7 @@ public class Main8Activity extends AppCompatActivity {
             return;
         }
 
+        // Time windows, should be a fields.
         int INTERVAL_MINUTES = 1;
         int INTERVAL_SECONDS = (int) (TimeUnit.MINUTES.toSeconds(INTERVAL_MINUTES)) ;
         int SYNC_FLEXTIME_SECONDS = INTERVAL_SECONDS;
@@ -53,30 +54,29 @@ public class Main8Activity extends AppCompatActivity {
 
         Job ourJob = firebaseJobDispatcher.newJobBuilder()
                 .setService(MyJobDispatcher.class)
-                .setTag("MY_JOB_TAG")
+                .setTag("MY_JOB_TAG") // the tag of this job. should be a field.
                 .setConstraints(Constraint.DEVICE_CHARGING)
                 .setConstraints(Constraint.DEVICE_IDLE)
                 .setConstraints(Constraint.ON_ANY_NETWORK)
-                .setLifetime(Lifetime.FOREVER)
-                .setRecurring(true)
-                .setTrigger(
+                .setLifetime(Lifetime.FOREVER)  // forever run this job.
+                .setRecurring(true) // repeating job.
+                .setTrigger( // run between:
                         Trigger.executionWindow(
-                                INTERVAL_SECONDS,
-                                INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS
+                                INTERVAL_SECONDS, // 60 seconds
+                                INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS // and 120 seconds.
                         )
                 )
-                .setReplaceCurrent(true)
+                .setReplaceCurrent(true) // if job exists with same tag, replace the old one.
                 .build();
 
-        firebaseJobDispatcher.schedule(ourJob);
+        firebaseJobDispatcher.schedule(ourJob); // schedule the job with the dispatcher.
 
-        sIsJobDispatcherInitialized = true;
+        sIsJobDispatcherInitialized = true; // the job has been initialized.
     }
 
     private void cancelFirebaseJobDispatcher(){
         GooglePlayDriver driver = new GooglePlayDriver(this);
         FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(driver);
-
         firebaseJobDispatcher.cancel("MY_JOB_TAG");
     }
 
