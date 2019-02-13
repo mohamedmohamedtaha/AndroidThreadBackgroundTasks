@@ -72,7 +72,6 @@
             </intent-filter>
         </receiver>
         ا
-
         <activity
             android:name=".Main7Activity"
             android:label="@string/title_activity_main7"
@@ -83,10 +82,14 @@
             android:name=".task.MyJobScheduler"
             android:enabled="true"
             android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            >
+            android:permission="android.permission.BIND_JOB_SERVICE">
         </service>
 
+        <activity
+            android:name=".thread.Main8Activity"
+            android:label="@string/title_activity_main8"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
