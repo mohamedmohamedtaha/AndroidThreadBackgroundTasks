@@ -86,7 +86,7 @@
         </service>
 
         <activity
-            android:name=".thread.Main8Activity"
+            android:name=".Main8Activity"
             android:label="@string/title_activity_main8"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
