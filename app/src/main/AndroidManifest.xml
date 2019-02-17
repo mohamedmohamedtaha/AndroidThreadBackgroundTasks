@@ -91,12 +91,19 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <service android:name=".task.MyJobDispatcher"
-                 android:exported="false">
+        <service
+            android:name=".task.MyJobDispatcher"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".Main9Activity"
+            android:label="@string/title_activity_main9"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
