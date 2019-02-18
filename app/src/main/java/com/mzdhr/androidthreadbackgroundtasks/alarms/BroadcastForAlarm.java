@@ -12,7 +12,15 @@ public class BroadcastForAlarm extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // Extract data from the intent
+        String name = intent.getStringExtra("NAME_KEY");
 
+        // Create an Intent to run our IntentService
+        Intent intentForService = new Intent(context, IntentServiceForAlarm.class);
+        intentForService.putExtra("NAME_KEY", name);
+
+        // Trigger our service to be run (e.g. a service that runs sounds or shows notification).
+        context.startService(intentForService);
     }
 
 }
